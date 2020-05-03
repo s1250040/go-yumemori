@@ -4,6 +4,8 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
+
+	user "github.com/s1250040/go-yumemori/service"
 )
 
 // Controller is user controlller
