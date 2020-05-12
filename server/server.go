@@ -3,7 +3,7 @@ package server
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/s1250040/go-yumemori/controller/user_controller"
+	controller "github.com/s1250040/go-yumemori/controller"
 )
 
 // Init is initialize server
@@ -17,7 +17,7 @@ func router() *gin.Engine {
 
 	u := r.Group("/users")
 	{
-		ctrl := user_controller.Controller{}
+		ctrl := controller.Controller{}
 		u.GET("", ctrl.Index)
 		u.GET("/:id", ctrl.Show)
 		u.POST("", ctrl.Create)

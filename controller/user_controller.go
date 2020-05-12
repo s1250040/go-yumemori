@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/s1250040/go-yumemori/service/user_service"
+	service "github.com/s1250040/go-yumemori/service"
 )
 
 // Controller is user controlller
@@ -13,7 +13,7 @@ type Controller struct{}
 
 // Index action: GET /users
 func (pc Controller) Index(c *gin.Context) {
-	var s user_service.Service
+	var s service.Service
 	p, err := s.GetAll()
 
 	if err != nil {
@@ -26,7 +26,7 @@ func (pc Controller) Index(c *gin.Context) {
 
 // Create action: POST /users
 func (pc Controller) Create(c *gin.Context) {
-	var s user_service.Service
+	var s service.Service
 	p, err := s.CreateModel(c)
 
 	if err != nil {
@@ -40,7 +40,7 @@ func (pc Controller) Create(c *gin.Context) {
 // Show action: GET /users/:id
 func (pc Controller) Show(c *gin.Context) {
 	id := c.Params.ByName("id")
-	var s user_service.Service
+	var s service.Service
 	p, err := s.GetByID(id)
 
 	if err != nil {
@@ -54,7 +54,7 @@ func (pc Controller) Show(c *gin.Context) {
 // Update action: PUT /users/:id
 func (pc Controller) Update(c *gin.Context) {
 	id := c.Params.ByName("id")
-	var s user_service.Service
+	var s service.Service
 	p, err := s.UpdateByID(id, c)
 
 	if err != nil {
@@ -68,7 +68,7 @@ func (pc Controller) Update(c *gin.Context) {
 // Delete action: DELETE /users/:id
 func (pc Controller) Delete(c *gin.Context) {
 	id := c.Params.ByName("id")
-	var s user_service.Service
+	var s service.Service
 
 	if err := s.DeleteByID(id); err != nil {
 		c.AbortWithStatus(403)
