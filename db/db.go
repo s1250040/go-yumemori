@@ -3,6 +3,7 @@ package db
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" // Use PostgreSQL in gorm
+	"github.com/s1250040/go-yumemori/entity"
 )
 
 var (
@@ -28,4 +29,8 @@ func Close() {
 	if err := db.Close(); err != nil {
 		panic(err)
 	}
+}
+
+func autoMigration() {
+	db.AutoMigrate(&entity.User{})
 }
