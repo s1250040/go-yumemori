@@ -17,7 +17,6 @@ type User entity.User
 func (s Service) GetAll() ([]User, error) {
 	db := db.GetDB()
 	var u []User
-
 	if err := db.Find(&u).Error; err != nil {
 		return nil, err
 	}
