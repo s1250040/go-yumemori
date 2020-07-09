@@ -6,7 +6,7 @@ type User struct {
 	// FirstName string `json:"firstname"`
 	// LastName  string `json:"lastname"`
 	Name   string `json:"name"`
-	States *[]State
+	States []State
 }
 
 type State struct {
