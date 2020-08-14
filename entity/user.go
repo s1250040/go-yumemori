@@ -13,7 +13,7 @@ type User struct {
 }
 
 type Result struct {
-	SamplingStartTime time.Time
+	SamplingStartTime time.Time `sql:"not null;type:date"`
 	// FK_bsb_no int
 }
 
