@@ -1,7 +1,5 @@
 package entity
 
-import "time"
-
 // User is user models property
 type User struct {
 	// ID uint `json:"id"` test時
@@ -13,7 +11,8 @@ type User struct {
 }
 
 type Result struct {
-	SamplingStartTime time.Time `sql:"not null;type:date"`
+	// SamplingStartTime time.Time `sql:"not null;type:date"`
+	SamplingStartTime string
 	// FK_bsb_no int
 }
 
