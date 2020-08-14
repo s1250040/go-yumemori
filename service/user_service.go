@@ -21,9 +21,9 @@ type Result struct {
 }
 
 // GetAll is get all User
-func (s Service) GetAll() ([]User, error) {
+func (s Service) GetAll() ([]Result, error) {
 	db := db.GetDB()
-	var result []User
+	var result []Result
 	if err := db.Raw("select sampling_start_time from public.signal").Scan(&result).Error; err != nil {
 		return result, nil
 	}
