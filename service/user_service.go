@@ -1,6 +1,8 @@
 package user
 
 import (
+	"time"
+
 	"github.com/gin-gonic/gin"
 
 	"github.com/s1250040/go-yumemori/db"
@@ -13,8 +15,9 @@ type Service struct{}
 // User is alias of entity.User struct
 type User entity.User
 
+// あとでuser.goに追加
 type Result struct {
-	sampling_start_time string
+	sampling_start_time time.Time
 }
 
 // GetAll is get all User
