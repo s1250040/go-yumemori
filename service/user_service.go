@@ -1,6 +1,8 @@
 package user
 
 import (
+	"time"
+
 	"github.com/gin-gonic/gin"
 
 	"github.com/s1250040/go-yumemori/db"
@@ -15,7 +17,7 @@ type User entity.User
 
 // あとでuser.goに追加
 type Result struct {
-	sampling_start_time int
+	sampling_start_time time.Time `gorm:"type:datetime(6)"`
 }
 
 // GetAll is get all User
