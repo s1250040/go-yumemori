@@ -1,5 +1,7 @@
 package entity
 
+import "time"
+
 // User is user models property
 type User struct {
 	// ID uint `json:"id"` test時
@@ -11,8 +13,8 @@ type User struct {
 }
 
 type Result struct {
-	// sampling_start_time time.Time
-	FK_bsb_no int
+	sampling_start_time time.Time
+	// FK_bsb_no int
 }
 
 // test時
