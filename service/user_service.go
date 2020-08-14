@@ -41,6 +41,7 @@ func (s Service) GetAll() ([]string, error) {
 
 	for _, emp := range result {
 		var sample = string(emp.SamplingStartTime.Format("2020/04/01"))
+		// var sample = string(emp.SamplingStartTime)
 		temp = append(temp, sample)
 	}
 
