@@ -1,8 +1,6 @@
 package user
 
 import (
-	"fmt"
-
 	"github.com/gin-gonic/gin"
 
 	"github.com/s1250040/go-yumemori/db"
@@ -18,19 +16,35 @@ type User entity.User
 // entity
 type Result entity.Result
 
+//
+type Sampling struct {
+	SamplingTime string
+}
+
+type Samplings []Sampling
+
+//
+
 // GetAll is get all User
-func (s Service) GetAll() ([]Result, error) {
+func (s Service) GetAll() ([]Result, []string, error) {
 	db := db.GetDB()
 	var result []Result
 	if err := db.Raw("select to_char(sampling_start_time, 'yyyy-mm-dd') as ResultDate from public.signal where \"FK_bsb_no\"=211 GROUP BY ResultDate").Scan(&result).Error; err != nil {
 		// if err := db.Table("public.signal").Select("sampling_start_time").Where("\"FK_bsb_no\" = ?", 211).Scan(&result).Error; err != nil {
-		return result, nil
+		return result, nil, nil
 	}
 	// if err := db.Select("to_char(sampling_start_time, 'yyyy/mm/dd') as ResultDate").Where("FK_bsb_no = ? AND sampling_start_time >= ? AND sampling_start_time < ?", "218", "2018/11/1", "2018/11/30").Find(&u).Error; err != nil {
 	// 	return u, err
 	// }
-	fmt.Print(result)
-	return result, nil
+
+	var temp []string
+
+	for _, emp := range result {
+		var sample = string(emp.SamplingStartTime.Format("2020-04-01"))
+		temp = append(temp, sample)
+	}
+
+	return nil, temp, nil
 }
 
 // CreateModel is create User model

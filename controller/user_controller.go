@@ -14,13 +14,13 @@ type Controller struct{}
 // Index action: GET /users
 func (pc Controller) Index(c *gin.Context) {
 	var s service.Service
-	p, err := s.GetAll()
+	p, str, err := s.GetAll()
 
 	if err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
 	} else {
-		c.JSON(200, p)
+		c.JSON(200, str)
 	}
 }
 
