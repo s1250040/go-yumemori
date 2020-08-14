@@ -20,19 +20,19 @@ type Result entity.Result
 
 //
 type Sampling struct {
-	SamplingTime string
+	SamplingTime string `json:"start"`
 }
 
-type Samplings []Sampling
+// type Samplings []Sampling
 
 //
 
 // GetAll is get all User
-func (s Service) GetAll() ([]string, error) {
+func (s Service) GetAll() ([]Sampling, error) {
 	db := db.GetDB()
 	var result []Result
 	// if err := db.Raw("select to_char(sampling_start_time, 'yyyy-mm-dd') as ResultDate from public.signal where \"FK_bsb_no\"=211 GROUP BY ResultDate").Scan(&result).Error; err != nil {
-	if err := db.Table("public.signal").Select("sampling_start_time").Where("\"FK_bsb_no\" = ? AND sampling_start_time >= ? AND sampling_start_time < ?", 211, "2019/11/1", "2019/11/30").Scan(&result).Error; err != nil {
+	if err := db.Table("public.signal").Select("sampling_start_time").Where("\"FK_bsb_no\" = ? AND sampling_start_time >= ? AND sampling_start_time < ?", 211, "2018/11/1", "2018/11/30").Scan(&result).Error; err != nil {
 		return nil, nil
 	}
 	// if err := db.Select("to_char(sampling_start_time, 'yyyy/mm/dd') as ResultDate").Where("FK_bsb_no = ? AND sampling_start_time >= ? AND sampling_start_time < ?", "218", "2018/11/1", "2018/11/30").Find(&u).Error; err != nil {
@@ -61,7 +61,15 @@ func (s Service) GetAll() ([]string, error) {
 		}
 	}
 
-	return newList, nil
+	var samplingdata []Sampling
+	for _, sdata := range newList {
+
+		var sampling Sampling
+		sampling.SamplingTime = sdata
+		samplingdata = append(samplingdata, sampling)
+	}
+
+	return samplingdata, nil
 }
 
 // CreateModel is create User model
