@@ -13,7 +13,8 @@ var (
 
 // Init is initialize db from main function
 func Init() {
-	db, err = gorm.Open("postgres", "user=yumemori password=yumemori　dbname=yumemori sslmode=disable")
+	// db, err = gorm.Open("postgres", "user=yumemori password=yumemori　dbname=yumemori sslmode=disable")
+	db, err = gorm.Open("postgres", "user=postgres password=12345　dbname=usa-test sslmode=disable")
 	if err != nil {
 		panic(err)
 	}
