@@ -40,7 +40,7 @@ func (s Service) GetAll() ([]string, error) {
 	var temp []string
 
 	for _, emp := range result {
-		var sample = string(emp.SamplingStartTime.UTC().Format("2020/04/01"))
+		var sample = emp.SamplingStartTime.UTC().Format("stdLongMonth")
 		// var sample = string(emp.SamplingStartTime)
 		temp = append(temp, sample)
 	}
