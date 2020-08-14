@@ -20,7 +20,7 @@ type Result entity.Result
 func (s Service) GetAll() ([]Result, error) {
 	db := db.GetDB()
 	var result []Result
-	if err := db.Raw("select sampling_start_time from public.signal").Scan(&result).Error; err != nil {
+	if err := db.Raw("select FK_bsb_no from public.signal").Scan(&result).Error; err != nil {
 		return result, nil
 	}
 	// if err := db.Select("to_char(sampling_start_time, 'yyyy/mm/dd') as ResultDate").Where("FK_bsb_no = ? AND sampling_start_time >= ? AND sampling_start_time < ?", "218", "2018/11/1", "2018/11/30").Find(&u).Error; err != nil {
