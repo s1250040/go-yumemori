@@ -1,6 +1,8 @@
 package user
 
 import (
+	"strings"
+
 	"github.com/gin-gonic/gin"
 
 	"github.com/s1250040/go-yumemori/db"
@@ -42,7 +44,9 @@ func (s Service) GetAll() ([]string, error) {
 	for _, emp := range result {
 		var sample = emp.SamplingStartTime.String()
 		// var sample = string(emp.SamplingStartTime)
-		temp = append(temp, sample)
+		slice := strings.Split(sample, " ")
+		temp = append(temp, slice[0])
+
 	}
 
 	return temp, nil
