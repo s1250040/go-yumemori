@@ -49,7 +49,19 @@ func (s Service) GetAll() ([]string, error) {
 
 	}
 
-	return temp, nil
+	m := make(map[string]struct{})
+
+	newList := make([]string, 0)
+
+	for _, element := range temp {
+		// mapでは、第二引数にその値が入っているかどうかの真偽値が入っている
+		if _, ok := m[element]; !ok {
+			m[element] = struct{}{}
+			newList = append(newList, element)
+		}
+	}
+
+	return newList, nil
 }
 
 // CreateModel is create User model
