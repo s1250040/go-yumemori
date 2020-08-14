@@ -1,5 +1,7 @@
 package entity
 
+import "time"
+
 // User is user models property
 type User struct {
 	// ID uint `json:"id"` test時
@@ -8,6 +10,10 @@ type User struct {
 	// Name string `json:"name"`　test時
 	// States []State　test時
 	Date string `json:"date"`
+}
+
+type Result struct {
+	sampling_start_time time.Time `gorm:"type:datetime(6)"`
 }
 
 // test時
