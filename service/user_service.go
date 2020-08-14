@@ -13,18 +13,22 @@ type Service struct{}
 // User is alias of entity.User struct
 type User entity.User
 
+type Result struct {
+	sampling_start_time string
+}
+
 // GetAll is get all User
 func (s Service) GetAll() ([]User, error) {
 	db := db.GetDB()
-	var u []User
-	if err := db.Find("public.signal").Error; err != nil {
-		return u, nil
+	var result []User
+	if err := db.Raw("select sampling_start_time from public.signal").Scan(&result).Error; err != nil {
+		return result, nil
 	}
 	// if err := db.Select("to_char(sampling_start_time, 'yyyy/mm/dd') as ResultDate").Where("FK_bsb_no = ? AND sampling_start_time >= ? AND sampling_start_time < ?", "218", "2018/11/1", "2018/11/30").Find(&u).Error; err != nil {
 	// 	return u, err
 	// }
 
-	return u, nil
+	return result, nil
 }
 
 // CreateModel is create User model
