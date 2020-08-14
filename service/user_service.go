@@ -1,8 +1,6 @@
 package user
 
 import (
-	"time"
-
 	"github.com/gin-gonic/gin"
 
 	"github.com/s1250040/go-yumemori/db"
@@ -41,10 +39,8 @@ func (s Service) GetAll() ([]string, error) {
 
 	var temp []string
 
-	jst, _ := time.LoadLocation("Asia/Tokyo")
-
 	for _, emp := range result {
-		var sample = emp.SamplingStartTime.In(jst).Format("2020-04-01")
+		var sample = emp.SamplingStartTime.String()
 		// var sample = string(emp.SamplingStartTime)
 		temp = append(temp, sample)
 	}
