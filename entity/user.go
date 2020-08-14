@@ -13,7 +13,7 @@ type User struct {
 }
 
 type Result struct {
-	sampling_start_time time.Time
+	Sampling_start_time time.Time
 	// FK_bsb_no int
 }
 
