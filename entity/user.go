@@ -2,13 +2,15 @@ package entity
 
 // User is user models property
 type User struct {
-	ID uint `json:"id"`
+	// ID uint `json:"id"` test時
 	// FirstName string `json:"firstname"`
 	// LastName  string `json:"lastname"`
-	Name   string `json:"name"`
-	States []State
+	// Name string `json:"name"`　test時
+	// States []State　test時
+	Date string `json:"date"`
 }
 
-type State struct {
-	State int `json:"state"`
-}
+// test時
+// type State struct {
+// 	State int `json:"state"`
+// }

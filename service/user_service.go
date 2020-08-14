@@ -17,8 +17,10 @@ type User entity.User
 func (s Service) GetAll() ([]User, error) {
 	db := db.GetDB()
 	var u []User
-	if err := db.Find(&u).Error; err != nil {
-		return nil, err
+	// if err := db.Find(&u).Error; err != nil { test時
+	// }
+	if err := db.Select("to_char(sampling_start_time, 'yyyy/mm/dd') as ResultDate").Where("FK_bsb_no = ? AND sampling_start_time >= ? AND sampling_start_time < ?", "218", "2018/11/1", "2018/11/30").First(&u).Error; err != nil {
+		return u, err
 	}
 
 	return u, nil

@@ -34,5 +34,6 @@ func Close() {
 }
 
 func autoMigration() {
-	db.AutoMigrate(&entity.User{}, &entity.State{})
+	// db.AutoMigrate(&entity.User{}, &entity.State{})　test時
+	db.AutoMigrate(&entity.User{})
 }
