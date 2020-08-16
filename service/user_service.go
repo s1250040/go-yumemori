@@ -20,7 +20,9 @@ type Result entity.Result
 
 //
 type Sampling struct {
-	SamplingTime string `json:"start"`
+	SamplingTime    string `json:"start"`
+	Rendering       string `json:"rendering"`
+	BackgroundColor string `json:"backgroundColor"`
 }
 
 // type Samplings []Sampling
@@ -66,6 +68,8 @@ func (s Service) GetAll() ([]Sampling, error) {
 
 		var sampling Sampling
 		sampling.SamplingTime = sdata
+		sampling.Rendering = "background"
+		sampling.BackgroundColor = "white"
 		samplingdata = append(samplingdata, sampling)
 	}
 
