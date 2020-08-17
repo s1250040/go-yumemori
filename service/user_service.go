@@ -34,7 +34,8 @@ func (s Service) GetAll() ([]Sampling, error) {
 	db := db.GetDB()
 	var result []Result
 	// if err := db.Raw("select to_char(sampling_start_time, 'yyyy-mm-dd') as ResultDate from public.signal where \"FK_bsb_no\"=211 GROUP BY ResultDate").Scan(&result).Error; err != nil {
-	if err := db.Table("public.signal").Select("sampling_start_time").Where("\"FK_bsb_no\" = ? AND sampling_start_time >= ? AND sampling_start_time < ?", 211, "2018/11/1", "2018/11/30").Scan(&result).Error; err != nil {
+	// if err := db.Table("public.signal").Select("sampling_start_time").Where("\"FK_bsb_no\" = ? AND sampling_start_time >= ? AND sampling_start_time < ?", 211, "2018/11/1", "2018/11/30").Scan(&result).Error; err != nil {
+	if err := db.Table("public.signal").Select("sampling_start_time").Where("\"FK_bsb_no\" = ? AND sampling_start_time >= ? AND sampling_start_time < ?", 115, "2020/4/1", "2020/4/30").Scan(&result).Error; err != nil {
 		return nil, nil
 	}
 	// if err := db.Select("to_char(sampling_start_time, 'yyyy/mm/dd') as ResultDate").Where("FK_bsb_no = ? AND sampling_start_time >= ? AND sampling_start_time < ?", "218", "2018/11/1", "2018/11/30").Find(&u).Error; err != nil {
